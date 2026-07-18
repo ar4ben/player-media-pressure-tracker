@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Project data and generated artifacts
+data/
+!docs/data/
+!docs/data/*.json
+*.parquet
+*.csv
+*.csv.zip
+*.jsonl
+
+# Spark / JVM runtime artifacts
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+_SUCCESS
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# airflow
+airflow/*
+!airflow/dags/
+
+# gcp
+gcp_creds.json
+
+# Terraform local state and provider cache
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+/artifacts
+
+# dbt
+dbt/logs/
+dbt/target/
+dbt/dbt_packages/
+dbt/.user.yml
+
+.vscode
+

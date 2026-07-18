@@ -1,0 +1,7 @@
+media_pressure:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: data/warehouse/media_pressure.duckdb
+      schema: gold

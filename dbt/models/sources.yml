@@ -1,0 +1,78 @@
+version: 2
+
+sources:
+  - name: silver
+    tables:
+      - name: wikipedia
+        config:
+          external_location: "read_parquet('data/lake/silver/wikipedia/wikipedia_*.parquet')"
+        data_tests:
+          - unique_combination:
+              arguments:
+                columns: [date, language]
+        columns:
+          - name: date
+            data_tests:
+              - not_null
+          - name: language
+            data_tests:
+              - not_null
+
+      - name: football_matches
+        config:
+          external_location: "read_parquet('data/lake/silver/football_matches/football_matches_*.parquet')"
+        columns:
+          - name: competition
+            data_tests:
+              - not_null
+          - name: match_date
+            data_tests:
+              - not_null
+              - unique
+          - name: team1
+            data_tests:
+              - not_null
+          - name: team2
+            data_tests:
+              - not_null
+
+      - name: google_trends
+        config:
+          external_location: "read_parquet('data/lake/silver/google_trends/google_trends.parquet')"
+        data_tests:
+          - unique_combination:
+              arguments:
+                columns: [week_start, audience_scope]
+        columns:
+          - name: week_start
+            data_tests:
+              - not_null
+          - name: audience_scope
+            data_tests:
+              - not_null
+
+      - name: gdelt_articles
+        config:
+          external_location: "read_parquet('data/lake/silver/gdelt_articles/gdelt_articles.parquet')"
+        columns:
+          - name: GKGRECORDID
+            data_tests:
+              - not_null
+          - name: stream
+            data_tests:
+              - not_null
+          - name: DocumentIdentifier
+            data_tests:
+              - not_null
+          - name: canonical_url
+            data_tests:
+              - not_null
+              - unique
+          - name: gkg_date
+            data_tests:
+              - not_null
+          # Currently every row is supposed to have tone.
+          # If this fails, additional tone counts should be used as weekly weights => sum(avg(tone) * count(tone))/count(tone).
+          - name: tone
+            data_tests:
+              - not_null

@@ -1,0 +1,122 @@
+version: 2
+
+models:
+  - name: gdelt_daily_metrics
+    description: >
+      Daily media metrics from canonical GDELT articles. The regular stream is
+      treated as English; salience is not reported for translated articles
+      because translated GDELT context did not produce reliable scores.
+    columns:
+      - name: date
+        description: GDELT publication date.
+      - name: english_coverage
+        description: Number of canonical articles in the English stream.
+      - name: english_avg_tone
+        description: Average raw GDELT tone for English articles.
+      - name: english_negative_share
+        description: Share of English articles with tone below zero.
+      - name: english_high_salience_coverage
+        description: Number of English articles with salience at least 0.70.
+      - name: english_high_salience_avg_tone
+        description: Average raw GDELT tone for high-salience English articles.
+      - name: english_high_salience_negative_share
+        description: Share of high-salience English articles with tone below zero.
+      - name: translated_coverage
+        description: Number of canonical articles in the translated stream.
+      - name: translated_avg_tone
+        description: Average raw GDELT tone for translated articles.
+      - name: translated_negative_share
+        description: Share of translated articles with tone below zero.
+      - name: translated_french_coverage
+        description: Number of translated-stream articles sourced from French.
+      - name: translated_french_avg_tone
+        description: Average raw GDELT tone for French-source translated articles.
+      - name: translated_french_negative_share
+        description: Share of French-source translated articles with tone below zero.
+      - name: translated_spanish_coverage
+        description: Number of translated-stream articles sourced from Spanish.
+      - name: translated_spanish_avg_tone
+        description: Average raw GDELT tone for Spanish-source translated articles.
+      - name: translated_spanish_negative_share
+        description: Share of Spanish-source translated articles with tone below zero.
+      - name: translated_other_coverage
+        description: Number of translated-stream articles sourced from other languages.
+
+  - name: player_daily
+    description: >
+      Complete daily timeline combining media coverage, Wikipedia attention,
+      and appearances by Kylian Mbappe. Missing GDELT dates remain null, while
+      football metrics are zero on dates when he did not play.
+    columns:
+      - name: date
+        description: Calendar date.
+      - name: wikipedia_en_views
+        description: Views of the English Wikipedia article.
+      - name: wikipedia_fr_views
+        description: Views of the French Wikipedia article.
+      - name: wikipedia_es_views
+        description: Views of the Spanish Wikipedia article.
+      - name: football_appearances
+        description: Number of matches in which Mbappe played.
+      - name: football_minutes
+        description: Total minutes played.
+      - name: football_goals
+        description: Total goals scored.
+
+  - name: player_weekly
+    description: >
+      Weekly player timeline. Article tone and negative share are weighted by
+      coverage; Google Trends is joined from weekly source data. GDELT
+      availability is retained separately from measured coverage.
+    columns:
+      - name: week_start
+        description: Sunday starting the calendar week.
+      - name: days_in_period
+        description: Number of modeled calendar days included in the week.
+      - name: gdelt_days_available
+        description: Number of days with available GDELT data.
+
+  - name: player_spikes
+    description: >
+      Extreme weekly increases in core media and public-attention signals.
+      Each signal is compared with the previous 52 weeks and must exceed the
+      upper outer fence (Q3 + 3 * IQR) after at least 12 baseline observations.
+      Incomplete calendar and GDELT weeks are excluded.
+    columns:
+      - name: week_start
+        description: Sunday starting the detected spike week.
+      - name: week_end
+        description: Saturday ending the detected spike week.
+      - name: signal_group
+        description: Media, Wikipedia, or Google Trends.
+      - name: signal
+        description: Weekly series in which the spike was detected.
+      - name: signal_value
+        description: Value observed during the spike week.
+      - name: baseline_observations
+        description: >
+          Number of non-null signal values in the preceding 52 calendar weeks.
+      - name: baseline_median
+        description: Median of the available observations in the baseline window.
+      - name: spike_threshold
+        description: Upper outer fence calculated from the baseline window.
+      - name: spike_ratio
+        description: Signal value divided by its baseline median.
+
+  - name: player_matches
+    description: >
+      Match-level performance context for Mbappe appearances within the common
+      analysis period.
+    columns:
+      - name: date
+        description: Match date.
+      - name: competition
+        description: Competition name.
+      - name: team1
+        description: First team in the source result.
+      - name: team2
+        description: Second team in the source result.
+      - name: minutes
+        description: Minutes played.
+      - name: goals
+        description: Goals scored.

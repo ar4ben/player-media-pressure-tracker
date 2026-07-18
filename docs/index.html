@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="News coverage, public curiosity and football performance around Kylian Mbappe.">
+  <title>Kylian Mbappé | Player Media Pressure Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 antialiased">
+  <header class="bg-gray-950 text-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:flex-row sm:items-center sm:px-6 lg:py-14">
+      <img class="h-40 w-[8.5rem] rounded-lg object-cover object-top sm:h-44 sm:w-[9.5rem]"
+        src="./assets/kylian-mbappe-2018.jpg" alt="Kylian Mbappe with France at the 2018 FIFA World Cup">
+      <div class="min-w-0 flex-1">
+        <p class="mb-3 text-sm font-semibold uppercase text-gray-400">
+          <a class="hover:text-white" href="#media">Media coverage</a>
+          ·
+          <a class="hover:text-white" href="#public-attention">Public attention</a>
+          ·
+          <a class="hover:text-white" href="#performance">Performance</a>
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl">
+          Player Media Pressure Tracker
+        </h1>
+        <p class="mt-3 text-2xl font-semibold text-white">Kylian Mbappé</p>
+        <p class="mt-4 max-w-3xl text-base leading-7 text-gray-300">
+          A data project that follows how news coverage, public curiosity
+          and football performance move around one of football's most visible
+          players. This is an open-source project.
+        </p>
+        <a class="mt-4 inline-flex items-center rounded-md border border-gray-700 px-3 py-2 text-sm font-semibold text-gray-200 hover:border-gray-500 hover:bg-gray-900 hover:text-white"
+          href="https://github.com/your-name/media-pressure" target="_blank" rel="noreferrer">
+          View source on GitHub
+        </a>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase text-gray-500">
+          Analysis period
+        </p>
+        <p id="date-range" class="mt-1 text-base text-gray-300">Loading data</p>
+        <p class="mt-3 max-w-xs text-sm leading-5 text-gray-400">
+          Most charts are aggregated weekly. Each date marks the first day of
+          that week.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="border-b border-gray-200 bg-white">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4">
+      <div class="border-b border-r border-gray-200 p-5 lg:border-b-0">
+        <p class="text-sm font-bold uppercase text-gray-500">Articles</p>
+        <p id="kpi-articles" class="mt-1 text-3xl font-bold">—</p>
+        <p class="mt-2 text-sm leading-5 text-gray-500">
+          News articles mentioning Mbappé in GDELT.
+        </p>
+      </div>
+      <div class="border-b border-gray-200 p-5 lg:border-b-0 lg:border-r">
+        <p class="text-sm font-bold uppercase text-gray-500">Weeks</p>
+        <p id="kpi-weeks" class="mt-1 text-3xl font-bold">—</p>
+        <p class="mt-2 text-sm leading-5 text-gray-500">
+          Calendar weeks represented in the analysis period.
+        </p>
+      </div>
+      <div class="border-r border-gray-200 p-5">
+        <p class="text-sm font-bold uppercase text-gray-500">Wiki views</p>
+        <p id="kpi-wiki-views" class="mt-1 text-3xl font-bold">—</p>
+        <p class="mt-2 text-sm leading-5 text-gray-500">
+          Visits to selected Mbappé Wikipedia pages.
+        </p>
+      </div>
+      <div class="p-5">
+        <p class="text-sm font-bold uppercase text-gray-500">Goals</p>
+        <p id="kpi-goals" class="mt-1 text-3xl font-bold">—</p>
+        <p class="mt-2 text-sm leading-5 text-gray-500">
+          Goals in tracked matches during the same period.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="media" class="border-b border-gray-300 bg-gray-50">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <div class="mb-8 border-b border-gray-200 pb-6">
+          <p class="text-xs font-bold uppercase text-red-600">01 · Media</p>
+          <h2 class="mt-2 font-serif text-3xl">When the media got louder</h2>
+          <div class="mt-3 space-y-3 text-sm leading-6 text-gray-600">
+            <p>
+              How often Mbappé appeared in GDELT-tracked news, and what the
+              surrounding article tone looked like. Media coverage in this
+              project comes from
+              <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener noreferrer"
+                class="font-semibold text-gray-950 underline decoration-gray-400 underline-offset-4 hover:decoration-gray-950">GDELT</a>,
+              a public dataset that monitors global news sources
+              across web, print and broadcast media.
+            </p>
+            <p>
+              Coverage means GDELT-tracked articles that mention Mbappé. It
+              does not mean every article published online and does not
+              always mean the article is mainly about him. Still, because
+              GDELT monitors a large set of news sources, the coverage
+              is useful as a broad signal of how media attention changes over time.
+              To separate passing mentions from stronger focus, this
+              page also shows a high-salience subset: articles where Mbappé is
+              more likely to be a main topic. The estimate is based on metadata
+              and entity context extracted by GDELT for each article.
+            </p>
+            <div>
+              <p class="font-semibold text-gray-700">Notes:</p>
+              <ul class="mt-2 list-disc space-y-2 pl-5">
+                <li>
+                  Because GDELT context was limited for non-English translated
+                  records, Mbappé was identified mainly through URL mentions in
+                  the French and Spanish series. These series are useful as
+                  broad URL-based mention signals, but they are not full
+                  high-salience equivalents. They may undercount weeks when
+                  Mbappé was discussed without appearing in the article URL.
+                </li>
+                <li>
+                  A GDELT service incident left source data unavailable from 15
+                  June through 1 July 2025, creating a visible gap in the media
+                  series.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <article>
+            <h3 class="mb-3 text-sm font-semibold">
+              English coverage and high-salience coverage
+            </h3>
+            <div class="relative h-[28rem] rounded-lg border border-gray-200 bg-white p-4 sm:h-[34rem]">
+              <canvas id="coverage-english-chart"></canvas>
+            </div>
+          </article>
+
+          <article>
+            <h3 class="mb-3 text-sm font-semibold">
+              French and Spanish URL-based coverage
+            </h3>
+            <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-96">
+              <canvas id="coverage-local-chart"></canvas>
+            </div>
+          </article>
+
+          <div>
+            <h3 class="mb-1 text-xl font-semibold">Average article tone</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              An automatic estimate of the article's overall emotional
+              language. It is not player-specific. Values above zero indicate
+              more positive language; values below zero indicate more negative
+              language.
+            </p>
+            <div class="space-y-8">
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">
+                  English average tone and high-salience average tone
+                </h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="tone-english-chart"></canvas>
+                </div>
+              </article>
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">
+                  French and Spanish URL-based average tone
+                </h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="tone-local-chart"></canvas>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-1 text-xl font-semibold">
+              Negative-tone article share
+            </h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              This shows the percentage of articles with negative estimated
+              tone. It means that the overall language of those articles was
+              classified as more negative. The negativity may come from the
+              wider story, match result, injury news, transfer drama, club
+              context or another person mentioned in the article.
+            </p>
+            <div class="space-y-8">
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">
+                  English negative-tone share and high-salience negative-tone share
+                </h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="negative-english-chart"></canvas>
+                </div>
+              </article>
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">
+                  French and Spanish URL-based negative-tone share
+                </h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="negative-local-chart"></canvas>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-1 text-xl font-semibold">Overall tone split</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Negative versus non-negative estimated tone across the full
+              analysis period, weighted by article count. Tone summarizes the
+              estimated mood of the full articles. It is not a direct measure
+              of how positively or negatively journalists wrote about the
+              player.
+            </p>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">English</h4>
+                <div class="relative h-56">
+                  <canvas id="tone-split-english-chart"></canvas>
+                </div>
+              </article>
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">High salience</h4>
+                <div class="relative h-56">
+                  <canvas id="tone-split-high-salience-chart"></canvas>
+                </div>
+              </article>
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">French</h4>
+                <div class="relative h-56">
+                  <canvas id="tone-split-french-chart"></canvas>
+                </div>
+              </article>
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">Spanish</h4>
+                <div class="relative h-56">
+                  <canvas id="tone-split-spanish-chart"></canvas>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="public-attention" class="border-b border-gray-300 bg-gray-100">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <div class="mb-8 border-b border-gray-200 pb-6">
+          <p class="text-xs font-bold uppercase text-red-600">
+            02 · Public attention
+          </p>
+          <h2 class="mt-2 font-serif text-3xl">Where curiosity rose</h2>
+          <p class="mt-3 text-sm leading-6 text-gray-600">
+            Media coverage and public curiosity are related, but they are not
+            the same thing. News can rise without people searching more, and
+            public attention can rise because of matches, viral clips,
+            transfers or social media.
+          </p>
+        </div>
+
+        <div class="space-y-10">
+          <article>
+            <h3 class="mb-1 text-xl font-semibold">Wikipedia pageviews</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Shows how often people visited selected language versions of
+              Mbappé's Wikipedia page.
+            </p>
+            <div class="relative h-[28rem] rounded-lg border border-gray-200 bg-white p-4 sm:h-[34rem]">
+              <canvas id="wikipedia-chart"></canvas>
+            </div>
+          </article>
+
+          <div>
+            <h3 class="mb-1 text-xl font-semibold">Google Trends</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Shows relative search interest. A value of 100 means the highest
+              search interest within the selected period and region, not the
+              total number of searches. Search geographies are relative
+              signals, not direct population or search-volume comparisons.
+            </p>
+            <div class="space-y-8">
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">Global</h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="google-global-chart"></canvas>
+                </div>
+              </article>
+              <article>
+                <h4 class="mb-3 text-sm font-semibold">France and Spain</h4>
+                <div class="relative h-80 rounded-lg border border-gray-200 bg-white p-4 sm:h-[22rem]">
+                  <canvas id="google-local-chart"></canvas>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="performance" class="border-b border-gray-300 bg-gray-50">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <div class="mb-8 border-b border-gray-200 pb-6">
+          <p class="text-xs font-bold uppercase text-red-600">
+            03 · Performance
+          </p>
+          <h2 class="mt-2 font-serif text-3xl">
+            What was happening on the pitch
+          </h2>
+          <p class="mt-3 text-sm leading-6 text-gray-600">
+            Match performance provides football context for the media
+            timeline. Goals, minutes, opponents and competitions can help
+            explain why a week matters, but they do not prove what caused
+            media coverage or public attention to rise.
+          </p>
+        </div>
+        <div class="space-y-8">
+          <div>
+            <h3 class="mb-1 text-sm font-semibold">Scoring match split</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level summaries across tracked appearances. The center
+              value shows the percentage of played matches where he scored at
+              least one goal.
+            </p>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">All tracked appearances</h4>
+                <div class="relative h-72 sm:h-80">
+                  <canvas id="scoring-match-split-chart"></canvas>
+                </div>
+              </article>
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">45+ minutes played</h4>
+                <div class="relative h-72 sm:h-80">
+                  <canvas id="scoring-match-split-45-chart"></canvas>
+                </div>
+              </article>
+              <article class="rounded-lg border border-gray-200 bg-white p-4">
+                <h4 class="mb-3 text-sm font-semibold">&lt;45 minutes played</h4>
+                <div class="relative h-72 sm:h-80">
+                  <canvas id="scoring-match-split-under-45-chart"></canvas>
+                </div>
+              </article>
+            </div>
+          </div>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Goals by match week</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Weekly chart across the full analysis calendar. Points appear
+              only in weeks with a tracked appearance.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="goals-match-weeks-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Minutes played</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Weekly chart across the full analysis calendar. Weeks without a
+              tracked appearance stay on the axis and appear as zero minutes.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="minutes-played-bars-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Goal streak</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level cumulative chart. Only played match dates are
+              shown. The value adds goals across consecutive scoring
+              appearances and resets to zero after a match where he played but
+              did not score.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="goal-streak-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Scoreless streak</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level cumulative chart. Only played match dates are
+              shown. The value counts consecutive played appearances without a
+              goal and resets to zero when he scores.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="scoreless-streak-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Scoring appearances</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level marker chart. Only played match dates are shown.
+              Green points mark matches where he scored at least one goal.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="scoring-appearances-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Scoreless appearances</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level marker chart. Only played match dates are shown.
+              Grey points mark matches where he played and did not score.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="scoreless-appearances-chart"></canvas>
+            </div>
+          </article>
+          <article>
+            <h3 class="mb-1 text-sm font-semibold">Cards</h3>
+            <p class="mb-3 text-sm leading-6 text-gray-600">
+              Match-level marker chart. Only played match dates are shown.
+              Points mark matches where he received at least one yellow or red
+              card.
+            </p>
+            <div class="relative h-72 rounded-lg border border-gray-200 bg-white p-4 sm:h-80">
+              <canvas id="cards-chart"></canvas>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-gray-300 bg-gray-100">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <div class="mb-6 border-b border-gray-200 pb-6">
+          <p class="text-xs font-bold uppercase text-red-600">
+            04 · Spike weeks
+          </p>
+          <h2 class="mt-2 font-serif text-3xl">Unusually intense weeks</h2>
+          <div class="mt-3 space-y-3 text-sm leading-6 text-gray-600">
+            <p>
+              A spike is a week where one or more signals became unusually
+              high compared with their recent history.
+            </p>
+            <p>
+              These weeks are entry points for investigation, not automatic
+              explanations or verified causes.
+            </p>
+          </div>
+        </div>
+        <div class="mb-8">
+          <h3 class="mb-2 text-lg font-semibold">Most intense spike weeks</h3>
+          <p class="mb-3 text-sm leading-6 text-gray-600">
+            Weeks where several independent signals rose at the same time.
+          </p>
+          <div id="top-spike-weeks" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5"></div>
+        </div>
+        <div class="mb-8">
+          <h3 class="mb-2 text-lg font-semibold">Spike timeline</h3>
+          <p class="mb-3 text-sm leading-6 text-gray-600">
+            Each dot marks a week where one signal was unusually high
+            compared with its recent history.
+          </p>
+          <div class="relative h-[28rem] rounded-lg border border-gray-200 bg-white p-4">
+            <canvas id="spike-timeline-chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-8 text-xs leading-5 text-gray-500 sm:px-6">
+      <p>
+        Sources: GDELT, Wikimedia Pageviews, Google Trends and Live-Result.
+        This project measures association, not causality.
+      </p>
+      <p>
+        Photo:
+        <a class="underline" href="https://commons.wikimedia.org/wiki/File:Kylian_Mbapp%C3%A9_2018.jpg">Anton Zaytsev /
+          Wikimedia Commons</a>,
+        <a class="underline" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.
+      </p>
+    </div>
+  </footer>
+
+  <div id="error" class="fixed right-4 bottom-4 hidden rounded-lg bg-red-700 px-4 py-3 text-sm text-white">
+    Dashboard data could not be loaded.
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>

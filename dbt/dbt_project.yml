@@ -1,0 +1,8 @@
+name: media_pressure
+version: "1.0"
+config-version: 2
+
+profile: media_pressure
+
+model-paths: ["models"]
+clean-targets: ["target", "dbt_packages"]
