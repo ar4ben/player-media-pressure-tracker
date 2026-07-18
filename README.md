@@ -2,6 +2,7 @@
 
 **Table of Contents**
 * [Project Overview](#project-overview)
+* [Dashboard and Articles](#dashboard-and-articles)
 * [Data Sources](#data-sources)
 * [Technologies](#technologies)
 * [Project Structure](#project-structure)
@@ -17,6 +18,10 @@ Player Media Pressure Tracker is an end-to-end Data Engineering project that mea
 The pipeline is designed to be reproducible locally, with optional Google Cloud Storage and Dataproc support for larger GDELT backfills.
 
 ![Architecture text](readme_assets/architecture.png)
+
+## Dashboard and Articles
+
+- [Static dashboard](https://ar4ben.github.io/player-media-pressure-tracker/) is the published output of the pipeline described throughout this README.
 
 ## Data sources 
 
