@@ -23,6 +23,7 @@ The pipeline is designed to be reproducible locally, with optional Google Cloud 
 
 - [Static dashboard](https://ar4ben.github.io/player-media-pressure-tracker/) is the published output of the pipeline described throughout this README.
 - [The Mbappé Paradox: What the Data Says About Performance and Media Pressure](https://medium.com/@arthur.rodzkin/the-mbapp%C3%A9-paradox-what-the-data-says-about-performance-and-media-pressure-f28149b6f9eb) examines the main patterns, turning points and events visible in the data.
+- [The Player Media Pressure Tracker: Anatomy of a Data Pipeline](https://medium.com/@arthur.rodzkin/fef1ccf46f24) provides a technical walkthrough of the pipeline architecture, source-specific workflows, data challenges and engineering trade-offs.
 
 ## Data sources 
 
